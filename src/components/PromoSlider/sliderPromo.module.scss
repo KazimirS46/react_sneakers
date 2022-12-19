@@ -1,0 +1,72 @@
+.promo {
+  padding: 45px 0;
+
+  .slider {
+    position: relative;
+
+    .sliderList {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .sliderSlide {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      padding-left: 60px;
+      background: #f4efe9;
+      border-radius: 20px;
+    }
+
+    .sponsors {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+    }
+
+    .title {
+      margin: 0;
+      margin-top: 88px;
+      margin-bottom: 23px;
+      font-weight: 700;
+      font-size: 38px;
+      line-height: 46px;
+      color: #000000;
+      span {
+        color: #8bb43c;
+      }
+    }
+
+    .sliderBuyButton {
+      padding: 14px 0;
+      max-width: 177px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 110px;
+    }
+
+    button {
+      position: absolute;
+      top: calc(50% - 17px);
+      width: 35px;
+      height: 35px;
+      background: #fff url('../../assets/image/svg/arrow-next-btn.svg') center
+        no-repeat;
+      font-size: 0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .prew {
+      display: none;
+      left: -17px;
+      transform: rotate(180deg);
+    }
+
+    .next {
+      right: -17px;
+    }
+  }
+}

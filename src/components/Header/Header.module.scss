@@ -1,0 +1,123 @@
+header {
+  padding: 43px 63px 44px 45px;
+  border-bottom: 1px solid #eaeaea;
+
+  a {
+    color: #000000;
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    max-width: 972px;
+
+    img,
+    h1,
+    p {
+      transition: filter 0.2s ease-in-out;
+    }
+
+    .logoWrapper {
+      display: flex;
+
+      img {
+        margin-right: 16px;
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #9d9d9d;
+      }
+
+      &:hover,
+      &:focus {
+        img {
+          filter: drop-shadow(0 0 7px #fcb858);
+        }
+
+        h1 {
+          filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
+        }
+
+        p {
+          filter: drop-shadow(0 0 2px rgba(157, 157, 157, 0.3));
+        }
+      }
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      img {
+        display: inline-block;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+      }
+
+      .cartWrapper {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+          margin-right: 10px;
+        }
+
+        .cartLinkImg {
+          margin-right: 10px;
+        }
+
+        p {
+          display: inline-block;
+          margin: 0;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 17px;
+          color: #5c5c5c;
+        }
+
+        &:hover {
+          img,
+          p {
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+          }
+        }
+      }
+
+      .favoriteLink,
+      .userLink {
+        transition: filter 0.2s ease-in-out;
+
+        &:hover {
+          filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+        }
+      }
+
+      li:not(li:last-child) {
+        margin-right: 30px;
+      }
+    }
+  }
+}
