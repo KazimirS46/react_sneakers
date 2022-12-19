@@ -20,11 +20,13 @@ function App() {
   const [products, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function dataRequest() {
     const cartResponse = await axios.get(URL.cart);
     const favoriteResponse = await axios.get(URL.favorite);
     const productResponse = await axios.get(URL.items);
+    setLoading(false);
 
     setCartProducts(cartResponse.data);
     setFavorites(favoriteResponse.data);
@@ -96,6 +98,7 @@ function App() {
         products,
         cartProducts,
         favorites,
+        loading,
         setCartProducts,
         addingItemToCart,
         addingProductToFavorites,
