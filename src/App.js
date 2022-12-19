@@ -31,9 +31,17 @@ function App() {
 
   const addingItemToCart = async (obj) => {
     try {
-      const { data } = await axios.post(URL.cart, obj);
-      setCartProducts((prev) => [...prev, data]);
-      console.log(`Added in cart ${obj.name}`);
+      if (
+        cartProducts.find((product) => Number(product.id) === Number(obj.id))
+      ) {
+        setCartProducts((prev) =>
+          prev.filter((i) => Number(i.id) !== Number(obj.id))
+        );
+      } else {
+        const { data } = await axios.post(URL.cart, obj);
+        setCartProducts((prev) => [...prev, data]);
+        console.log(`Added in cart ${obj.name}`);
+      }
     } catch (error) {
       alert('Ошибка при добавлении в корзину');
     }
@@ -41,8 +49,9 @@ function App() {
 
   const deleteCartProduct = async (id) => {
     try {
-      await axios.delete(`${URL.cart}/${id}`);
       setCartProducts((prev) => prev.filter((item) => item.id !== id));
+      await axios.delete(`${URL.cart}/${id}`);
+
       console.log('Click on Delete Product');
     } catch (error) {
       alert('Ошибка при удалении из Корзины');
