@@ -29,28 +29,39 @@ function App() {
     axios.get(URL.favorite).then(({ data }) => setFavorites(data));
   }, []);
 
-  const addingItemToCart = (obj) => {
-    axios.post(URL.cart, obj);
-    setCartProducts((prev) => [...prev, obj]);
-    console.log(`Added in cart ${obj.name}`);
+  const addingItemToCart = async (obj) => {
+    try {
+      const { data } = await axios.post(URL.cart, obj);
+      setCartProducts((prev) => [...prev, data]);
+      console.log(`Added in cart ${obj.name}`);
+    } catch (error) {
+      alert('Ошибка при добавлении в корзину');
+    }
   };
 
-  const deleteCartProduct = (id) => {
-    axios.delete(`${URL.cart}/${id}`);
-    setCartProducts((prev) => prev.filter((item) => item.id !== id));
-    console.log('Click on Delete Product');
+  const deleteCartProduct = async (id) => {
+    try {
+      await axios.delete(`${URL.cart}/${id}`);
+      setCartProducts((prev) => prev.filter((item) => item.id !== id));
+      console.log('Click on Delete Product');
+    } catch (error) {
+      alert('Ошибка при удалении из Корзины');
+    }
   };
 
-  const addingProductToFavorites = (obj) => {
-    console.log(obj.id);
-    if (favorites.find((favorite) => favorite.id === obj.id)) {
-      axios.delete(`${URL.favorite}/${obj.id}`);
-      setFavorites((prev) => prev.filter((item) => item.id !== obj.id));
-      console.log(`Deleted in Favorites ${obj.name}`);
-    } else {
-      axios.post(URL.favorite, obj);
-      setFavorites((prev) => [...prev, obj]);
-      console.log(`Added in Favorites ${obj.name}`);
+  const addingProductToFavorites = async (obj) => {
+    try {
+      if (favorites.find((favorite) => favorite.id === obj.id)) {
+        axios.delete(`${URL.favorite}/${obj.id}`);
+        setFavorites((prev) => prev.filter((item) => item.id !== obj.id));
+        console.log(`Deleted in Favorites ${obj.name}`);
+      } else {
+        const { data } = await axios.post(URL.favorite, obj);
+        setFavorites((prev) => [...prev, data]);
+        console.log(`Added in Favorites ${obj.name}`);
+      }
+    } catch (error) {
+      alert('Не удалось добавить в фавориты');
     }
   };
 
