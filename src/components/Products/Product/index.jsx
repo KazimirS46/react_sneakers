@@ -10,11 +10,11 @@ import {
 } from '../../../assets/svg';
 import { AppContext } from '../../../context';
 
-export function Product({ product, favorited = false }) {
+export function Product({ product, inFavorites = false, inCart = false }) {
   const { addingItemToCart, addingProductToFavorites } = useContext(AppContext);
 
-  const [isAddedCart, setIsAdded] = useState(false);
-  const [isAddedFavorites, setIsAddedFavorites] = useState(favorited);
+  const [isAddedCart, setIsAdded] = useState(inCart);
+  const [isAddedFavorites, setIsAddedFavorites] = useState(inFavorites);
 
   const addToFavorite = () => {
     setIsAddedFavorites((prev) => !prev);

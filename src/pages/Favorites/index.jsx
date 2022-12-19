@@ -12,7 +12,7 @@ export function Favorites() {
       <h2>Favorites</h2>
       <ul className={styles.favoritesCards}>
         {favorites.map((favorite) => (
-          <Product key={favorite.id} product={favorite} favorited={true} />
+          <Product key={favorite.id} product={favorite} inFavorites={true} />
         ))}
       </ul>
     </div>

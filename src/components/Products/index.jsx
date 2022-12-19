@@ -7,7 +7,7 @@ import { Product } from './Product';
 import { Search } from './Search';
 
 export function Products() {
-  const { products } = useContext(AppContext);
+  const { products, cartProducts, favorites } = useContext(AppContext);
   const [searchValue, setSearchValue] = useState('');
 
   const onChangeSearchInput = (event) => {
@@ -28,7 +28,16 @@ export function Products() {
               productItem.name.toLowerCase().includes(searchValue.toLowerCase())
             )
             .map((product) => (
-              <Product key={product.productID} product={product} />
+              <Product
+                key={product.productID}
+                product={product}
+                inFavorites={favorites.find(
+                  (i) => i.productID === product.productID
+                )}
+                inCart={cartProducts.find(
+                  (i) => i.productID === product.productID
+                )}
+              />
             ))}
         </ul>
       </SearchContext.Provider>

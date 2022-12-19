@@ -21,12 +21,20 @@ function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
+  async function dataRequest() {
+    const cartResponse = await axios.get(URL.cart);
+    const favoriteResponse = await axios.get(URL.favorite);
+    const productResponse = await axios.get(URL.items);
+
+    setCartProducts(cartResponse.data);
+    setFavorites(favoriteResponse.data);
+    setProducts(productResponse.data);
+  }
+
   const placeAnOrder = () => console.log('Click on Place An Order');
 
   useEffect(() => {
-    axios.get(URL.items).then(({ data }) => setProducts(data));
-    axios.get(URL.cart).then(({ data }) => setCartProducts(data));
-    axios.get(URL.favorite).then(({ data }) => setFavorites(data));
+    dataRequest();
   }, []);
 
   const addingItemToCart = async (obj) => {
@@ -51,7 +59,6 @@ function App() {
     try {
       setCartProducts((prev) => prev.filter((item) => item.id !== id));
       await axios.delete(`${URL.cart}/${id}`);
-
       console.log('Click on Delete Product');
     } catch (error) {
       alert('Ошибка при удалении из Корзины');
@@ -59,10 +66,19 @@ function App() {
   };
 
   const addingProductToFavorites = async (obj) => {
+    console.log(obj.id);
     try {
-      if (favorites.find((favorite) => favorite.id === obj.id)) {
+      if (
+        favorites.find(
+          (favorite) => Number(favorite.productID) === Number(obj.productID)
+        )
+      ) {
         axios.delete(`${URL.favorite}/${obj.id}`);
-        setFavorites((prev) => prev.filter((item) => item.id !== obj.id));
+        setFavorites((prev) =>
+          prev.filter(
+            (item) => Number(item.productID) !== Number(obj.productID)
+          )
+        );
         console.log(`Deleted in Favorites ${obj.name}`);
       } else {
         const { data } = await axios.post(URL.favorite, obj);
