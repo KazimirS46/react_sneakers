@@ -93,20 +93,20 @@ function App() {
     }
   };
 
+  const context = {
+    products,
+    cartProducts,
+    favorites,
+    loading,
+    setCartProducts,
+    addingItemToCart,
+    addingProductToFavorites,
+    deleteCartProduct,
+    placeAnOrder,
+  };
+
   return (
-    <AppContext.Provider
-      value={{
-        products,
-        cartProducts,
-        favorites,
-        loading,
-        setCartProducts,
-        addingItemToCart,
-        addingProductToFavorites,
-        deleteCartProduct,
-        placeAnOrder,
-      }}
-    >
+    <AppContext.Provider value={context}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
