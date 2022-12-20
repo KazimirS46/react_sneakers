@@ -1,12 +1,23 @@
 .favorites {
   padding: 40px 0;
 
-  h2 {
-    margin: 0;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 39px;
-    color: #000000;
+  .header {
+    display: flex;
+    margin-bottom: 42px;
+
+    h2 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 39px;
+      color: #000000;
+      order: 1;
+    }
+
+    a {
+      margin-right: 21px;
+      order: 0;
+    }
   }
 
   .favoritesCards {
@@ -99,6 +110,81 @@
           font-size: 14px;
           line-height: 17px;
           color: #000000;
+        }
+      }
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .messageContent {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h3 {
+        margin: 0;
+        margin-bottom: 11px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+        order: 2;
+      }
+
+      .messageImage {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 24px;
+        order: 1;
+      }
+
+      .description {
+        margin: 0;
+        margin-bottom: 70px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.4);
+        order: 3;
+      }
+
+      .backBtn {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 245px;
+        padding-right: 40px;
+        padding-left: 31px;
+        border: none;
+        order: 4;
+
+        &:hover {
+          img {
+            transform: translateX(-5px);
+          }
+        }
+
+        img {
+          width: 14px;
+          height: 12px;
+          left: 30px;
+          top: 21px;
+          margin-right: 20px;
+          transition: transform 0.15s ease-in-out;
+        }
+
+        p {
+          margin: 0;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 19px;
+          text-align: center;
         }
       }
     }

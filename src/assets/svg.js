@@ -6,6 +6,8 @@ import cartAdded from './image/svg/cart-added.svg';
 import cartNotAdded from './image/svg/cart-not-added.svg';
 import favoriteAdded from './image/svg/favorite-added.svg';
 import favoriteNotAdded from './image/svg/favorite-not-added.svg';
+import btnToHome from './image/svg/btn-to-home.svg';
+import sadSmile from './image/svg/sad-smile.svg';
 import orderBtnArrow from './image/svg/btn-arrow-white.svg';
 import orderBtnLeft from './image/svg/btn-arrow-left.svg';
 import cartClose from './image/svg/btn-cart-close.svg';
@@ -20,6 +22,8 @@ export {
   cartNotAdded,
   favoriteAdded,
   favoriteNotAdded,
+  btnToHome,
+  sadSmile,
   orderBtnArrow,
   orderBtnLeft,
   cartClose,

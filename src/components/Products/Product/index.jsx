@@ -44,7 +44,7 @@ export function Product({ product, inFavorites = false, inCart = false }) {
           height={112}
           className={styles.sneakers}
         />
-        <h3>{product.name}</h3>
+        <h4>{product.name}</h4>
         <div>
           <div className={styles.price}>
             <p>Цена:</p>
