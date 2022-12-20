@@ -47,10 +47,12 @@ function App() {
         setCartProducts((prev) =>
           prev.filter((i) => Number(i.id) !== Number(obj.id))
         );
+        axios.delete(`${URL.cart}/${obj.id}`);
+        console.log(`Удалили из корзины ${(obj.id, obj.name)}`);
       } else {
         const { data } = await axios.post(URL.cart, obj);
         setCartProducts((prev) => [...prev, data]);
-        console.log(`Added in cart ${obj.name}`);
+        console.log(`Добавили в корзину ${obj.name}`);
       }
     } catch (error) {
       alert('Ошибка при добавлении в корзину');
@@ -61,31 +63,30 @@ function App() {
     try {
       setCartProducts((prev) => prev.filter((item) => item.id !== id));
       await axios.delete(`${URL.cart}/${id}`);
-      console.log('Click on Delete Product');
+      console.log('Click on Delete Product from Cart');
     } catch (error) {
       alert('Ошибка при удалении из Корзины');
     }
   };
 
   const addingProductToFavorites = async (obj) => {
-    console.log(obj.id);
     try {
       if (
         favorites.find(
           (favorite) => Number(favorite.productID) === Number(obj.productID)
         )
       ) {
-        axios.delete(`${URL.favorite}/${obj.id}`);
         setFavorites((prev) =>
           prev.filter(
             (item) => Number(item.productID) !== Number(obj.productID)
           )
         );
-        console.log(`Deleted in Favorites ${obj.name}`);
+        axios.delete(`${URL.favorite}/${obj.id}`);
+        console.log(`Удалили из Избранного ${(obj.id, obj.name)}`);
       } else {
         const { data } = await axios.post(URL.favorite, obj);
         setFavorites((prev) => [...prev, data]);
-        console.log(`Added in Favorites ${obj.name}`);
+        console.log(`Добавили в избранное ${(obj.id, obj.name)}`);
       }
     } catch (error) {
       alert('Не удалось добавить в фавориты');
