@@ -39,6 +39,7 @@ export function Products() {
   };
 
   const renderCards = () => {
+    console.log(cartProducts);
     return products
       .filter((productItem) =>
         productItem.name.toLowerCase().includes(searchValue.toLowerCase())

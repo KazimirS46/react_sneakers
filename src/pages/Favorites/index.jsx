@@ -15,7 +15,7 @@ const staticData = {
 };
 
 export function Favorites() {
-  const { favorites } = useContext(AppContext);
+  const { favorites, cartProducts } = useContext(AppContext);
 
   const favoritesList = () => {
     return (
@@ -32,7 +32,14 @@ export function Favorites() {
         </div>
         <ul className={styles.favoritesCards}>
           {favorites.map((favorite) => (
-            <Product key={favorite.id} product={favorite} inFavorites={true} />
+            <Product
+              key={favorite.id}
+              product={favorite}
+              inFavorites={true}
+              inCart={cartProducts.some(
+                (i) => Number(i.productID) === Number(favorite.productID)
+              )}
+            />
           ))}
         </ul>
       </>

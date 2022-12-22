@@ -8,17 +8,17 @@ import { AppContext } from '../../../context';
 // нужно сделать компонент карточки товара в корзине
 
 export function ProductList({ order, loading }) {
-  console.log('Render ProductList');
+  const { cartProducts, deleteCartProduct } = useContext(AppContext);
+  const totalPrice = cartProducts.reduce((sum, obj) => obj.price + sum, 0);
 
   const staticData = {
     mainTitle: 'Корзина',
     footerTitle: 'Итого:',
-    cartAmount: `${'21 498'} руб.`,
+    cartAmount: `${totalPrice} руб.`,
     cartTax: 'Налог 5%: ',
-    amountTax: `${'1074'} руб. `,
+    amountTax: `${(totalPrice * 0.05).toFixed(0)} руб. `,
     buttonTitle: 'Оформить заказ ',
   };
-  const { cartProducts, deleteCartProduct } = useContext(AppContext);
 
   return (
     <>

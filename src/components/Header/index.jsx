@@ -13,7 +13,10 @@ import styles from './Header.module.scss';
 import { AppContext } from '../../context';
 
 export function Header() {
-  const { openCart, modal } = useContext(AppContext);
+  const { cartProducts, openCart, modal } = useContext(AppContext);
+  const totalPrice = cartProducts.reduce((sum, obj) => obj.price + sum, 0);
+
+  console.log();
 
   return (
     <>
@@ -37,7 +40,7 @@ export function Header() {
                   alt="Cart link"
                   className={styles.cartLinkImg}
                 />
-                <p>1205 руб.</p>
+                <p>{totalPrice} руб.</p>
               </a>
             </li>
             <li>
