@@ -17,17 +17,20 @@ export function ModalCart() {
     useContext(AppContext);
 
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const placeAnOrder = async () => {
     try {
+      setLoading(true);
       console.log('Click on Place An Order');
-      const { data } = await axios.post(URL.orders, { cartProducts });
+      const { data } = await axios.post(URL.orders, { items: cartProducts });
       setOrderPlaced(true);
       setCartProducts([]);
     } catch (error) {
       console.error(error);
       alert('Ошибка при добавлении в Orders');
     } finally {
+      setLoading(false);
       console.log('погнали нахуй');
     }
   };
@@ -38,7 +41,7 @@ export function ModalCart() {
         <h2>{staticData.mainTitle}</h2>
         <button className={styles.closeBtn} onClick={closeCart}></button>
         {cartProducts.length > 0 ? (
-          <ProductList order={placeAnOrder} />
+          <ProductList order={placeAnOrder} loadind={loading} />
         ) : (
           <EmptyCart complete={orderPlaced} />
         )}

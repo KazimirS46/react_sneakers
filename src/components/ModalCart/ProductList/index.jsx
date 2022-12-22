@@ -7,7 +7,7 @@ import { AppContext } from '../../../context';
 
 // нужно сделать компонент карточки товара в корзине
 
-export function ProductList({ order }) {
+export function ProductList({ order, loading }) {
   console.log('Render ProductList');
 
   const staticData = {
@@ -55,7 +55,11 @@ export function ProductList({ order }) {
             <b>{staticData.amountTax}</b>
           </li>
         </ul>
-        <button className={`button ${styles.orderBtn}`} onClick={order}>
+        <button
+          onClick={order}
+          className={`button ${styles.orderBtn}`}
+          disabled={loading}
+        >
           {staticData.buttonTitle}
           <img src={orderBtnArrow} alt="place an order" />
         </button>

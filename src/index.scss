@@ -77,6 +77,11 @@ body {
   background-color: #9dd558;
   border-radius: 18px;
   border: none;
+
+  &:disabled {
+    background-color: #bebebe;
+    cursor: default;
+  }
 }
 
 img {
