@@ -14,6 +14,10 @@ export function Header() {
   const [modal, setModal] = useState(false);
   const openCart = () => setModal(true);
 
+  const closeModal = () => {
+    setModal(false);
+  };
+
   return (
     <>
       <header>
@@ -53,13 +57,7 @@ export function Header() {
         </nav>
       </header>
 
-      {modal && (
-        <ModalCart
-          closeModal={() => {
-            setModal(false);
-          }}
-        />
-      )}
+      {modal && <ModalCart closeModal={closeModal} />}
     </>
   );
 }

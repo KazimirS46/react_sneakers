@@ -1,0 +1,135 @@
+ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  background-image: url('../../../assets/image/svg/btn-cart-close.svg');
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-image: url('../../../assets/image/svg/btn-cart-close-hover.svg');
+  }
+}
+
+h2 {
+  margin: 0;
+  margin-bottom: 30px;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+}
+
+.productCards {
+  flex: 1;
+  overflow: auto;
+
+  .productCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #f3f3f3;
+    border-radius: 20px;
+    overflow: hidden;
+
+    img {
+      position: relative;
+      top: -5px;
+    }
+
+    .description {
+      max-width: 150px;
+      font-size: 14px;
+      line-height: 17px;
+      color: #000000;
+
+      p {
+        margin: 0;
+        margin-bottom: 8px;
+        font-weight: 400;
+      }
+
+      b {
+        font-weight: 700;
+      }
+    }
+
+    .closeProduct {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      margin: 0;
+      background-color: #ffffff;
+      background-image: url('../../../assets/image/svg/btn-cart-close.svg');
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-image: url('../../../assets/image/svg/btn-cart-close-hover.svg');
+      }
+    }
+  }
+}
+
+.cartTotal {
+  display: flex;
+  flex-direction: column;
+
+  ul {
+    li {
+      display: flex;
+      margin-bottom: 20px;
+
+      div {
+        position: relative;
+        top: -4px;
+        flex: 1;
+        margin: 0 5px;
+        border-bottom: 1px dashed #dfdfdf;
+      }
+    }
+  }
+  .orderBtn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    border: none;
+
+    &:hover {
+      img {
+        transform: translateX(5px);
+      }
+    }
+
+    img {
+      position: absolute;
+      right: 30px;
+      top: 21px;
+      transition: transform 0.15s ease-in-out;
+    }
+  }
+}
+
+button {
+  border-radius: 9px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 3px 0 #f3f3f3;
+  }
+}
