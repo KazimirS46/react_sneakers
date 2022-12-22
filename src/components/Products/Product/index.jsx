@@ -11,7 +11,6 @@ import {
 import { AppContext } from '../../../context';
 
 export function Product({ product, inFavorites = false, inCart = false }) {
-  console.log('Render product');
   console.log(inCart);
 
   const { addingItemToCart, addingProductToFavorites } = useContext(AppContext);

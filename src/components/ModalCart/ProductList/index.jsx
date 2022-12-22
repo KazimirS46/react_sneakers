@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import axios from 'axios';
 
 import styles from './ProductList.module.scss';
 
@@ -8,7 +7,7 @@ import { AppContext } from '../../../context';
 
 // нужно сделать компонент карточки товара в корзине
 
-export function ProductList() {
+export function ProductList({ order }) {
   console.log('Render ProductList');
 
   const staticData = {
@@ -19,32 +18,7 @@ export function ProductList() {
     amountTax: `${'1074'} руб. `,
     buttonTitle: 'Оформить заказ ',
   };
-  const {
-    URL,
-    cartProducts,
-    setCartProducts,
-    deleteCartProduct,
-    setOrderPlaced,
-    orderID,
-    setOrderID,
-  } = useContext(AppContext);
-
-  const placeAnOrder = async () => {
-    try {
-      console.log('Click on Place An Order');
-      const { data } = await axios.post(URL.orders, { cartProducts });
-      console.log(data.id);
-      setOrderID(data.id);
-      console.log(orderID);
-      setOrderPlaced(true);
-      setCartProducts([]);
-    } catch (error) {
-      console.error(error);
-      alert('Ошибка при добавлении в Orders');
-    } finally {
-      console.log('погнали нахуй');
-    }
-  };
+  const { cartProducts, deleteCartProduct } = useContext(AppContext);
 
   return (
     <>
@@ -81,7 +55,7 @@ export function ProductList() {
             <b>{staticData.amountTax}</b>
           </li>
         </ul>
-        <button className={`button ${styles.orderBtn}`} onClick={placeAnOrder}>
+        <button className={`button ${styles.orderBtn}`} onClick={order}>
           {staticData.buttonTitle}
           <img src={orderBtnArrow} alt="place an order" />
         </button>

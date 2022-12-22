@@ -24,7 +24,6 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
-  const [orderPlaced, setOrderPlaced] = useState(false);
   const [orders, setOrders] = useState([]);
   const [orderID, setOrderID] = useState(null);
 
@@ -112,7 +111,6 @@ function App() {
     favorites,
     loading,
     modal,
-    orderPlaced,
     orderID,
     orders,
     setCartProducts,
@@ -122,7 +120,6 @@ function App() {
     openCart,
     closeCart,
     setOrderID,
-    setOrderPlaced,
   };
 
   return (

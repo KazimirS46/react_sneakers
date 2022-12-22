@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
+import axios from 'axios';
 
 import styles from './ModalCart.module.scss';
 
@@ -12,8 +13,24 @@ const staticData = {
 
 export function ModalCart() {
   console.log('Render ModalCart');
+  const { URL, cartProducts, setCartProducts, closeCart } =
+    useContext(AppContext);
 
-  const { cartProducts, closeCart, orderPlaced } = useContext(AppContext);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+
+  const placeAnOrder = async () => {
+    try {
+      console.log('Click on Place An Order');
+      const { data } = await axios.post(URL.orders, { cartProducts });
+      setOrderPlaced(true);
+      setCartProducts([]);
+    } catch (error) {
+      console.error(error);
+      alert('Ошибка при добавлении в Orders');
+    } finally {
+      console.log('погнали нахуй');
+    }
+  };
 
   return (
     <div className={styles.overlay}>
@@ -21,7 +38,7 @@ export function ModalCart() {
         <h2>{staticData.mainTitle}</h2>
         <button className={styles.closeBtn} onClick={closeCart}></button>
         {cartProducts.length > 0 ? (
-          <ProductList />
+          <ProductList order={placeAnOrder} />
         ) : (
           <EmptyCart complete={orderPlaced} />
         )}

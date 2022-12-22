@@ -12,6 +12,8 @@ export function Products() {
   const { products, cartProducts, loading, favorites } = useContext(AppContext);
   const [searchValue, setSearchValue] = useState('');
 
+  console.log(cartProducts);
+
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
