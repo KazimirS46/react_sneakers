@@ -11,10 +11,11 @@ import {
 
 import styles from './Header.module.scss';
 import { AppContext } from '../../context';
+import { useCart } from '../../hooks/useCart';
 
 export function Header() {
-  const { cartProducts, openCart, modal } = useContext(AppContext);
-  const totalPrice = cartProducts.reduce((sum, obj) => obj.price + sum, 0);
+  const { openCart, modal } = useContext(AppContext);
+  const { totalPrice } = useCart();
 
   console.log();
 
@@ -40,7 +41,7 @@ export function Header() {
                   alt="Cart link"
                   className={styles.cartLinkImg}
                 />
-                <p>{totalPrice} руб.</p>
+                {totalPrice > 0 && <p>{totalPrice} руб.</p>}
               </a>
             </li>
             <li>

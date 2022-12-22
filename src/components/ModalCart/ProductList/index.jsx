@@ -4,12 +4,14 @@ import styles from './ProductList.module.scss';
 
 import { orderBtnArrow } from '../../../assets/svg';
 import { AppContext } from '../../../context';
+import { useCart } from '../../../hooks/useCart';
 
 // нужно сделать компонент карточки товара в корзине
 
 export function ProductList({ order, loading }) {
-  const { cartProducts, deleteCartProduct } = useContext(AppContext);
-  const totalPrice = cartProducts.reduce((sum, obj) => obj.price + sum, 0);
+  const { deleteCartProduct } = useContext(AppContext);
+
+  const { cartProducts, totalPrice } = useCart();
 
   const staticData = {
     mainTitle: 'Корзина',
