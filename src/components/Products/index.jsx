@@ -12,8 +12,6 @@ export function Products() {
   const { products, cartProducts, loading, favorites } = useContext(AppContext);
   const [searchValue, setSearchValue] = useState('');
 
-  console.log(cartProducts);
-
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
@@ -53,8 +51,11 @@ export function Products() {
           inFavorites={favorites.some(
             (i) => Number(i.productID) === Number(product.productID)
           )}
-          inCart={cartProducts.some(
-            (i) => Number(i.productID) === Number(product.productID)
+          // inCart={cartProducts.some(
+          //   (i) => Number(i.productID) === Number(product.productID)
+          // )}
+          isAdded={cartProducts.some(
+            (item) => Number(item.productID) === Number(product.productID)
           )}
           isLoading={loading}
         />
