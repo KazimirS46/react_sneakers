@@ -23,7 +23,6 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
-  const [orders, setOrders] = useState([]);
   const [orderID, setOrderID] = useState(null);
 
   const openCart = () => setModal(true);
@@ -34,13 +33,11 @@ function App() {
 
   async function dataRequest() {
     const cartResponse = await axios.get(URL.cart);
-    const ordersResponse = await axios.get(URL.orders);
     const favoriteResponse = await axios.get(URL.favorite);
     const productResponse = await axios.get(URL.items);
     setLoading(false);
 
     setCartProducts(cartResponse.data);
-    setOrders(ordersResponse.data);
     setFavorites(favoriteResponse.data);
     setProducts(productResponse.data);
   }
@@ -111,7 +108,6 @@ function App() {
     loading,
     modal,
     orderID,
-    orders,
     setCartProducts,
     addingItemToCart,
     addingProductToFavorites,

@@ -1,11 +1,13 @@
-import { useContext } from 'react';
+import { useState, /*useContext,*/ useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import styles from './Orders.module.scss';
 
-import { AppContext } from '../../context';
 import { Product } from '../../components/Products/Product';
 import { btnToHome, orderBtnLeft, orderSmile } from '../../assets/svg';
+// import { AppContext } from '../../context';
+import { LoadingProduct } from '../../components/Products/LoadingProduct';
 
 const staticData = {
   mainTitle: 'Мои Заказы',
@@ -15,33 +17,51 @@ const staticData = {
 };
 
 export function Orders() {
-  const { orders } = useContext(AppContext);
+  // const { URL } = useContext(AppContext);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const ordersList = () => {
-    return (
-      <>
-        <div className={styles.header}>
-          <h2>{staticData.mainTitle}</h2>
-          <Link to="/">
-            <img
-              src={btnToHome}
-              className={styles.btnToHomeButton}
-              alt="Домой"
-            />
-          </Link>
-        </div>
-        <ul className={styles.ordersCards}>
-          {orders.map((order) => (
-            <Product key={order.id} product={order} inFavorites={true} />
-          ))}
-        </ul>
-      </>
-    );
+  const orderRequest = async () => {
+    try {
+      const { data } = await axios.get(
+        `https://63776ba05c477765121d5144.mockapi.io/orders`
+      );
+      setOrders(data.map((i) => i.items).flat());
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      alert('Ошибка при загрузке заказов');
+    }
+  };
+
+  useEffect(() => {
+    orderRequest();
+  }, []);
+
+  const fakeArray = [
+    { ida: 1 },
+    { ida: 2 },
+    { ida: 3 },
+    { ida: 4 },
+    { ida: 5 },
+    { ida: 6 },
+    { ida: 7 },
+    { ida: 8 },
+    { ida: 9 },
+    { ida: 10 },
+    { ida: 11 },
+    { ida: 12 },
+  ];
+
+  const fake = () => {
+    return fakeArray.map((item) => (
+      <LoadingProduct key={item.ida} isLoading={loading} />
+    ));
   };
 
   const emptyOrdersList = () => {
     return (
-      <div className={styles.container}>
+      <li className={styles.container}>
         <div className={styles.messageContent}>
           <h3>{staticData.message}</h3>
           <img
@@ -55,13 +75,36 @@ export function Orders() {
             <p>{staticData.buttonText}</p>
           </Link>
         </div>
-      </div>
+      </li>
+    );
+  };
+
+  const ordersList = () => {
+    return (
+      <>
+        {orders.length > 0
+          ? orders.map((order, index) => (
+              <Product
+                key={index}
+                product={order}
+                inFavorites={true}
+                isLoading={loading}
+              />
+            ))
+          : emptyOrdersList()}
+      </>
     );
   };
 
   return (
     <div className={styles.orders}>
-      {orders.length ? ordersList() : emptyOrdersList()}
+      <div className={styles.header}>
+        <h2>{staticData.mainTitle}</h2>
+        <Link to="/">
+          <img src={btnToHome} className={styles.btnToHomeButton} alt="Домой" />
+        </Link>
+      </div>
+      <ul className={styles.ordersCards}>{loading ? fake() : ordersList()}</ul>
     </div>
   );
 }
