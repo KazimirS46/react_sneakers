@@ -5,6 +5,8 @@ import styles from './ProductList.module.scss';
 import { orderBtnArrow } from '../../../assets/svg';
 import { AppContext } from '../../../context';
 
+// нужно сделать компонент карточки товара в корзине
+
 export function ProductList() {
   const staticData = {
     mainTitle: 'Корзина',
