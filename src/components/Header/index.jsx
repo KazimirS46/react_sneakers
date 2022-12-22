@@ -50,7 +50,7 @@ export function Header() {
               </Link>
             </li>
             <li>
-              <Link to="/user" className={styles.userLink}>
+              <Link to="/orders" className={styles.userLink}>
                 <img src={headerUserBtn} alt="User Link" />
               </Link>
             </li>

@@ -11,6 +11,7 @@ import sadSmile from './image/svg/sad-smile.svg';
 import orderBtnArrow from './image/svg/btn-arrow-white.svg';
 import orderBtnLeft from './image/svg/btn-arrow-left.svg';
 import orderPlaced from './image/svg/order-placed.svg';
+import orderSmile from './image/svg/facepalm.svg';
 import cartClose from './image/svg/btn-cart-close.svg';
 import cartEmpty from './image/svg/cart-empty.svg';
 
@@ -30,4 +31,5 @@ export {
   orderPlaced,
   cartClose,
   cartEmpty,
+  orderSmile,
 };
