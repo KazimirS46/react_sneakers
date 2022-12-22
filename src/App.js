@@ -18,7 +18,6 @@ const URL = {
 };
 
 function App() {
-  console.log('App render');
   const [products, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
