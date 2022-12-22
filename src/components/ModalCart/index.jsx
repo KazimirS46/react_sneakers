@@ -17,7 +17,7 @@ export function ModalCart() {
     useContext(AppContext);
 
   const [orderPlaced, setOrderPlaced] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const placeAnOrder = async () => {
     try {
@@ -41,7 +41,7 @@ export function ModalCart() {
         <h2>{staticData.mainTitle}</h2>
         <button className={styles.closeBtn} onClick={closeCart}></button>
         {cartProducts.length > 0 ? (
-          <ProductList order={placeAnOrder} loadind={loading} />
+          <ProductList order={placeAnOrder} loading={loading} />
         ) : (
           <EmptyCart complete={orderPlaced} />
         )}

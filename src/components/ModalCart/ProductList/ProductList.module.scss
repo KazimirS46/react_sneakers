@@ -4,24 +4,6 @@ ul {
   margin: 0;
 }
 
-.closeBtn {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  margin: 0;
-  background-color: #ffffff;
-  background-image: url('../../../assets/image/svg/btn-cart-close.svg');
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    background-image: url('../../../assets/image/svg/btn-cart-close-hover.svg');
-  }
-}
-
 h2 {
   margin: 0;
   margin-bottom: 30px;
@@ -75,10 +57,14 @@ h2 {
       background-color: #ffffff;
       background-image: url('../../../assets/image/svg/btn-cart-close.svg');
       border: none;
+      border-radius: 9px;
+      transition: all 0.2s ease-in-out;
       cursor: pointer;
 
       &:hover {
         background-image: url('../../../assets/image/svg/btn-cart-close-hover.svg');
+        transform: translateY(-2px);
+        box-shadow: 0 2px 3px 0 #f3f3f3;
       }
     }
   }
@@ -122,14 +108,5 @@ h2 {
       top: 21px;
       transition: transform 0.15s ease-in-out;
     }
-  }
-}
-
-button {
-  border-radius: 9px;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 3px 0 #f3f3f3;
   }
 }

@@ -79,6 +79,7 @@ body {
   border: none;
 
   &:disabled {
+    animation: button-loading 1s ease-in-out infinite;
     background-color: #bebebe;
     cursor: default;
   }
@@ -86,4 +87,16 @@ body {
 
 img {
   display: block;
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }

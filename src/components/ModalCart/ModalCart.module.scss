@@ -32,9 +32,13 @@
   background-color: #ffffff;
   background-image: url('../../assets/image/svg/btn-cart-close.svg');
   border: none;
+  border-radius: 9px;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 
   &:hover {
     background-image: url('../../assets/image/svg/btn-cart-close-hover.svg');
+    transform: translateY(-2px);
+    box-shadow: 0 2px 3px 0 #f3f3f3;
   }
 }
