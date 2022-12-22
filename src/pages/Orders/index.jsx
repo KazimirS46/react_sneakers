@@ -88,6 +88,7 @@ export function Orders() {
                 key={index}
                 product={order}
                 inFavorites={true}
+                inCart={true}
                 isLoading={loading}
               />
             ))
