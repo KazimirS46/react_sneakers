@@ -9,21 +9,22 @@ import { ProductList } from './ProductList';
 
 // нужно сделать компонент карточки товара в корзине
 
-export function ModalCart(props) {
-  const { cartProducts } = useContext(AppContext);
+export function ModalCart() {
+  const { cartProducts, closeCart } = useContext(AppContext);
+
+  const staticData = {
+    mainTitle: 'Корзина',
+  };
 
   return (
     <div className={styles.overlay}>
       <div className={styles.shopingCart}>
+        <h2>{staticData.mainTitle}</h2>
+        <button className={styles.closeBtn} onClick={closeCart}></button>
         {cartProducts.length > 0 ? (
-          <ProductList closeModal={props.closeModal} />
+          <ProductList />
         ) : (
           <>
-            <h2>Корзина</h2>
-            <button
-              className={styles.closeBtn}
-              onClick={props.closeModal}
-            ></button>
             <div className={styles.cartEmpty}>
               <div className={styles.wrapper}>
                 <img
@@ -39,7 +40,7 @@ export function ModalCart(props) {
                 <Link
                   to="/"
                   className={`button ${styles.back}`}
-                  onClick={props.closeModal}
+                  onClick={closeCart}
                 >
                   <img src={orderBtnLeft} alt="Вернуться" /> Вернуться назад
                 </Link>

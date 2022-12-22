@@ -5,14 +5,20 @@ import styles from './ProductList.module.scss';
 import { orderBtnArrow } from '../../../assets/svg';
 import { AppContext } from '../../../context';
 
-export function ProductList(props) {
+export function ProductList() {
+  const staticData = {
+    mainTitle: 'Корзина',
+    footerTitle: 'Итого:',
+    cartAmount: `${'21 498'} руб.`,
+    cartTax: 'Налог 5%: ',
+    amountTax: `${'1074'} руб. `,
+    buttonTitle: 'Оформить заказ ',
+  };
   const { cartProducts, deleteCartProduct, placeAnOrder } =
     useContext(AppContext);
 
   return (
     <>
-      <h2>Корзина</h2>
-      <button className={styles.closeBtn} onClick={props.closeModal}></button>
       <ul className={styles.productCards}>
         {cartProducts.map((cartProduct) => (
           <li key={cartProduct.productID} className={styles.productCard}>
@@ -36,18 +42,19 @@ export function ProductList(props) {
       <div className={styles.cartTotal}>
         <ul>
           <li>
-            <span>Итого: </span>
+            <span>{staticData.footerTitle}</span>
             <div></div>
-            <b>21 498 руб. </b>
+            <b>{staticData.cartAmount}</b>
           </li>
           <li>
-            <span>Налог 5%: </span>
+            <span>{staticData.cartTax}</span>
             <div></div>
-            <b>1074 руб. </b>
+            <b>{staticData.amountTax}</b>
           </li>
         </ul>
         <button className={`button ${styles.orderBtn}`} onClick={placeAnOrder}>
-          Оформить заказ <img src={orderBtnArrow} alt="place an order" />
+          {staticData.buttonTitle}
+          <img src={orderBtnArrow} alt="place an order" />
         </button>
       </div>
     </>

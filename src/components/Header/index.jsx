@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext } from 'react';
 
 import { ModalCart } from '../ModalCart';
 import { mainLogo } from '../../assets/png';
@@ -8,15 +8,12 @@ import {
   headerFavoriteBtn,
   headerUserBtn,
 } from '../../assets/svg';
+
 import styles from './Header.module.scss';
+import { AppContext } from '../../context';
 
 export function Header() {
-  const [modal, setModal] = useState(false);
-  const openCart = () => setModal(true);
-
-  const closeModal = () => {
-    setModal(false);
-  };
+  const { openCart, modal } = useContext(AppContext);
 
   return (
     <>
@@ -57,7 +54,7 @@ export function Header() {
         </nav>
       </header>
 
-      {modal && <ModalCart closeModal={closeModal} />}
+      {modal && <ModalCart />}
     </>
   );
 }

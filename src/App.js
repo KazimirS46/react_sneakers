@@ -21,6 +21,13 @@ function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modal, setModal] = useState(false);
+
+  const openCart = () => setModal(true);
+
+  const closeCart = () => {
+    setModal(false);
+  };
 
   async function dataRequest() {
     const cartResponse = await axios.get(URL.cart);
@@ -98,11 +105,14 @@ function App() {
     cartProducts,
     favorites,
     loading,
+    modal,
     setCartProducts,
     addingItemToCart,
     addingProductToFavorites,
     deleteCartProduct,
     placeAnOrder,
+    openCart,
+    closeCart,
   };
 
   return (
