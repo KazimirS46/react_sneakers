@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import axios from 'axios';
 
 import styles from './ProductList.module.scss';
 
@@ -8,6 +9,8 @@ import { AppContext } from '../../../context';
 // нужно сделать компонент карточки товара в корзине
 
 export function ProductList() {
+  console.log('Render ProductList');
+
   const staticData = {
     mainTitle: 'Корзина',
     footerTitle: 'Итого:',
@@ -16,8 +19,32 @@ export function ProductList() {
     amountTax: `${'1074'} руб. `,
     buttonTitle: 'Оформить заказ ',
   };
-  const { cartProducts, deleteCartProduct, placeAnOrder } =
-    useContext(AppContext);
+  const {
+    URL,
+    cartProducts,
+    setCartProducts,
+    deleteCartProduct,
+    setOrderPlaced,
+    orderID,
+    setOrderID,
+  } = useContext(AppContext);
+
+  const placeAnOrder = async () => {
+    try {
+      console.log('Click on Place An Order');
+      const { data } = await axios.post(URL.orders, { cartProducts });
+      console.log(data.id);
+      setOrderID(data.id);
+      console.log(orderID);
+      setOrderPlaced(true);
+      setCartProducts([]);
+    } catch (error) {
+      console.error(error);
+      alert('Ошибка при добавлении в Orders');
+    } finally {
+      console.log('погнали нахуй');
+    }
+  };
 
   return (
     <>

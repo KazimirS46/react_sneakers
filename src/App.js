@@ -14,14 +14,19 @@ const URL = {
   items: `https://63776ba05c477765121d5144.mockapi.io/items`,
   cart: `https://63776ba05c477765121d5144.mockapi.io/cart`,
   favorite: `https://63776ba05c477765121d5144.mockapi.io/favorite`,
+  orders: `https://63776ba05c477765121d5144.mockapi.io/orders`,
 };
 
 function App() {
+  console.log('App render');
   const [products, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [orderID, setOrderID] = useState(null);
 
   const openCart = () => setModal(true);
 
@@ -31,20 +36,16 @@ function App() {
 
   async function dataRequest() {
     const cartResponse = await axios.get(URL.cart);
+    const ordersResponse = await axios.get(URL.orders);
     const favoriteResponse = await axios.get(URL.favorite);
     const productResponse = await axios.get(URL.items);
     setLoading(false);
 
     setCartProducts(cartResponse.data);
+    setOrders(ordersResponse.data);
     setFavorites(favoriteResponse.data);
     setProducts(productResponse.data);
   }
-
-  const placeAnOrder = () => console.log('Click on Place An Order');
-
-  useEffect(() => {
-    dataRequest();
-  }, []);
 
   const addingItemToCart = async (obj) => {
     try {
@@ -100,19 +101,28 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    dataRequest();
+  }, []);
+
   const context = {
+    URL,
     products,
     cartProducts,
     favorites,
     loading,
     modal,
+    orderPlaced,
+    orderID,
+    orders,
     setCartProducts,
     addingItemToCart,
     addingProductToFavorites,
     deleteCartProduct,
-    placeAnOrder,
     openCart,
     closeCart,
+    setOrderID,
+    setOrderPlaced,
   };
 
   return (
