@@ -14,7 +14,6 @@ const staticData = {
 };
 
 export function ModalCart() {
-  console.log('Render ModalCart');
   const { URL, cartProducts, setCartProducts, closeCart } =
     useContext(AppContext);
 

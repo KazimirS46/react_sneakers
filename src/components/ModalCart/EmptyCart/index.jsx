@@ -7,7 +7,6 @@ import { cartEmpty, orderPlaced, orderBtnLeft } from '../../../assets/svg';
 import { AppContext } from '../../../context';
 
 export function EmptyCart({ complete }) {
-  console.log('Render EmptyCart');
   const staticDataEmpty = {
     title: 'Корзина пустая',
     description: 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.',

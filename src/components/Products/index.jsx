@@ -8,11 +8,8 @@ import { Search } from './Search';
 import { LoadingProduct } from './LoadingProduct';
 
 export function Products() {
-  console.log('Render Products');
   const { products, cartProducts, loading, favorites } = useContext(AppContext);
   const [searchValue, setSearchValue] = useState('');
-
-  console.log(cartProducts);
 
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
