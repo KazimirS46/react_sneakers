@@ -15,8 +15,19 @@
     }
 
     a {
+      display: block;
       margin-right: 21px;
       order: 0;
+
+      .btnToHomeButton {
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 2px 3px 0 #f4ece9;
+        }
+      }
     }
   }
 

@@ -23,7 +23,11 @@ export function Favorites() {
         <div className={styles.header}>
           <h2>{staticData.mainTitle}</h2>
           <Link to="/">
-            <img src={btnToHome} alt="Домой" />
+            <img
+              src={btnToHome}
+              className={styles.btnToHomeButton}
+              alt="Домой"
+            />
           </Link>
         </div>
         <ul className={styles.favoritesCards}>
