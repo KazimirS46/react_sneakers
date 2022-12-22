@@ -7,6 +7,8 @@ import { AppContext } from '../../context';
 import { ProductList } from './ProductList';
 import { EmptyCart } from './EmptyCart';
 
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
 const staticData = {
   mainTitle: 'Корзина',
 };
@@ -26,6 +28,12 @@ export function ModalCart() {
       const { data } = await axios.post(URL.orders, { items: cartProducts });
       setOrderPlaced(true);
       setCartProducts([]);
+
+      for (let i = 0; i < cartProducts.length; i++) {
+        const item = cartProducts[i];
+        await axios.delete(`${URL.cart}/${item.id}`);
+        await delay(1000);
+      }
     } catch (error) {
       console.error(error);
       alert('Ошибка при добавлении в Orders');
